@@ -211,7 +211,7 @@ export default class App extends Component {
 
      while(randomized.size !== size) {
          if(this.state.matches) {
-            randomized.add(Math.floor(Math.random() * 350));
+            randomized.add(Math.floor(Math.random() * 300));
          }
          else {
             randomized.add(Math.floor(Math.random() * 229));
