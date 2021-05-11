@@ -203,7 +203,7 @@ export default class App extends Component {
      //* Generating unique array of integers
 
      let randomized = new Set();
-     let size = 80;
+     let size = 70;
    
      while(randomized.size !== size) {
          randomized.add(Math.floor(Math.random() * (this.chartRef.current.clientHeight - 50)));

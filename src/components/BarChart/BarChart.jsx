@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React  from 'react';
 import { motion } from 'framer-motion';
 import styles from "./BarChart.module.css";
 import cx from "classnames";
@@ -9,13 +9,6 @@ const options = {
 };
 
 export default React.forwardRef(function BarChart({ array, sorted, updateSize }, ref) {
-    // const chartRef = useRef();
-
-    // useEffect(() => {
-    //     const chartHeight = chartRef.current.clientHeight;
-    //     updateSize(chartHeight);
-    // }, []);
-
     return (
         <section className={styles.chartContainer}>
             <div className={styles.chart} ref={ref}>
