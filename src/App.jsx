@@ -81,9 +81,17 @@ export default class App extends Component {
          if(min !== i) {
             await this.wait(250);
             swap(i,min,sorted);
-            this.setState({
-               array: sorted,
-            })
+            if(!this.state.stop) {
+               this.setState({
+                  array: sorted,
+               })
+            }
+            else {
+               this.setState({
+                  isPlaying: false,
+               })
+               return;
+            }
          }
       }
 
@@ -111,7 +119,7 @@ export default class App extends Component {
       for(let i=0;i<sorted.length;i++) {
          for(let j=i; j>0; j--) {
             if(sorted[j] < sorted[j-1]) {
-               await this.wait(3);
+               await this.wait(10);
                swap(j, j-1, sorted);
                if( this.state.stop === false ) {
                   this.setState({
@@ -155,7 +163,7 @@ export default class App extends Component {
 
         for(let i=0;i<sorted.length;i++) {
            if(sorted[i] > sorted[i+1]) {
-              await this.wait(0.1);
+              await this.wait(5);
               swap(i, i+1,sorted);
               swapped = true;
               if( this.state.stop === false ) {
@@ -199,7 +207,7 @@ export default class App extends Component {
      //* Generating unique array of integers
 
      let randomized = new Set();
-     let size = 65;
+     let size = this.state.matches ? 95 : 75;
 
      while(randomized.size !== size) {
          if(this.state.matches) {
