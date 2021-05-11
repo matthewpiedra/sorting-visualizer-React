@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import styles from "./BarChart.module.css";
 import cx from "classnames";
@@ -8,10 +8,17 @@ const options = {
     ease: "easeOut"
 };
 
-export default function BarChart({ array, sorted }) {
+export default React.forwardRef(function BarChart({ array, sorted, updateSize }, ref) {
+    // const chartRef = useRef();
+
+    // useEffect(() => {
+    //     const chartHeight = chartRef.current.clientHeight;
+    //     updateSize(chartHeight);
+    // }, []);
+
     return (
         <section className={styles.chartContainer}>
-            <div className={styles.chart}>
+            <div className={styles.chart} ref={ref}>
                 <ul className={styles.bars}>
                     {array.map(el => {
                         return (
@@ -24,4 +31,4 @@ export default function BarChart({ array, sorted }) {
             </div>
         </section>
     );
-}
+})

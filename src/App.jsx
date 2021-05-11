@@ -6,10 +6,12 @@ export default class App extends Component {
   constructor(props) {
      super(props);
 
+     this.chartRef = React.createRef();
+
      this.state = {
         array: [],
         algorithm: "Bubble Sort",
-        matches: window.matchMedia("(min-width: 48em)").matches,
+        chartSize: null,
         isPlaying: false,
         stop: false,
         sorted: false,
@@ -19,26 +21,20 @@ export default class App extends Component {
      this.bubbleSort = this.bubbleSort.bind(this);
      this.play = this.play.bind(this);
      this.randomize = this.randomize.bind(this);
-     this.mediaHandler = this.mediaHandler.bind(this);
+     this.updateSize = this.updateSize.bind(this);
      this.wait = this.wait.bind(this);
      this.selectionSort = this.selectionSort.bind(this);
      this.insertionSort = this.insertionSort.bind(this);
   }
 
-  mediaHandler(e) {
-      this.setState({
-         matches: e.matches,
-      });
+  updateSize(size) {
+     this.setState({
+        chartSize: size,
+     });
   }
 
   componentDidMount() {
       this.randomize();
-
-      window.matchMedia("(min-width: 48em)").addEventListener("change", this.mediaHandler);
-  }
-
-  componentWillUnmount() {
-      window.matchMedia("(min-width: 48em)").removeEventListener("change", this.mediaHandler);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -203,19 +199,14 @@ export default class App extends Component {
      } 
   }
 
-  randomize(e) {
+  randomize() {
      //* Generating unique array of integers
 
      let randomized = new Set();
-     let size = this.state.matches ? 85 : 65;
-
+     let size = 80;
+   
      while(randomized.size !== size) {
-         if(this.state.matches) {
-            randomized.add(Math.floor(Math.random() * 290));
-         }
-         else {
-            randomized.add(Math.floor(Math.random() * 229));
-         }
+         randomized.add(Math.floor(Math.random() * (this.chartRef.current.clientHeight - 50)));
      }
 
      this.setState({
@@ -254,7 +245,7 @@ export default class App extends Component {
 
   render() {
     const { array, algorithm, isPlaying, sorted } = this.state;
-
+    
     return (
        <main className={styles.container}>
           <Header />
@@ -269,6 +260,8 @@ export default class App extends Component {
           <BarChart 
               array={array}
               sorted={sorted}
+              updateSize={this.updateSize}
+              ref={this.chartRef}
           />
        </main>
     );
