@@ -1,0 +1,11 @@
+.container {
+    background: #07689f;
+    text-align: center;
+}
+
+.container h1 {
+    padding-top: 2.1875rem;
+    padding-bottom: 2.1875rem;
+    font-size: 2.3rem;
+    color: #f7fbfc;
+}
