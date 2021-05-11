@@ -4,7 +4,7 @@ import styles from "./BarChart.module.css";
 import cx from "classnames";
 
 const options = {
-    duration: 0.12,
+    duration: 0.1,
     ease: "easeOut"
 };
 
