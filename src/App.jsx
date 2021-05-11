@@ -119,7 +119,7 @@ export default class App extends Component {
       for(let i=0;i<sorted.length;i++) {
          for(let j=i; j>0; j--) {
             if(sorted[j] < sorted[j-1]) {
-               await this.wait(1);
+               await this.wait(5);
                swap(j, j-1, sorted);
                if( this.state.stop === false ) {
                   this.setState({
@@ -163,7 +163,7 @@ export default class App extends Component {
 
         for(let i=0;i<sorted.length;i++) {
            if(sorted[i] > sorted[i+1]) {
-              await this.wait(1);
+              await this.wait(5);
               swap(i, i+1,sorted);
               swapped = true;
               if( this.state.stop === false ) {
@@ -211,7 +211,7 @@ export default class App extends Component {
 
      while(randomized.size !== size) {
          if(this.state.matches) {
-            randomized.add(Math.floor(Math.random() * 450));
+            randomized.add(Math.floor(Math.random() * 350));
          }
          else {
             randomized.add(Math.floor(Math.random() * 229));
